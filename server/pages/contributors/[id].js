@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
     },
   };
 }
-export const trimMessage = (content = '', maxLength = 50) => {
+export const trimMessage = (content = '', maxLength = 60) => {
   if (content.length > maxLength) {
     return `${content.substring(0, maxLength)}...`;
   }
@@ -80,46 +80,47 @@ export default function Home({ authorCommits, author }) {
       </section>
       <section className="flex  items-center justify-center px-24 py-4">
         <h3 className="text-3xl font-bold text-chennai-800">
-          Showing all contributions of <strong>{author.login} 🌈</strong>
+          Showing all contributions of <strong>{author.login} </strong>
         </h3>
       </section>
 
       <section className="flex  items-center justify-center px-24 py-8">
-        <table className="table-auto  min-w-3xl bg-chennai-100  border-2 text-varakala-700 font-semibold border-madiwala-600 drop-shadow-flat">
+        <table className="table-auto  min-w-3xl bg-chennai-100  border-2 text-varakala-700 border-madiwala-600 drop-shadow-flat">
           <thead>
             <tr>
-              <th className="p-4 pr-8 text-left text-lg font-bold text-chennai-800">
+              <th className="p-4 pr-8 text-left text-lg font-semibold text-chennai-800">
                 #
               </th>
-              <th className="p-4 pr-8 text-left text-lg font-bold text-chennai-800">
+              <th className="p-4 pr-8 text-left text-lg font-semibold text-chennai-800">
                 Message
               </th>
-              <th className="p-4 pr-12 text-left text-lg font-bold text-chennai-800">
+              <th className="p-4 pr-12 text-left text-lg font-semibold text-chennai-800">
                 Date
               </th>
-              <th className="p-4  text-right text-lg font-bold text-chennai-800">
+              <th className="p-4  text-left text-lg font-semibold text-chennai-800">
                 Repo
               </th>
             </tr>
           </thead>
           <tbody>
             {authorCommits.map((commit, index) => (
-              <tr key={commit.id}>
+              <tr key={commit.sha}>
                 <td className="px-4">{`#${index + 1}`}</td>
                 <td className="px-4 py-2 text-left">
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center pl-2 underline text-ulsoor-700"
-                    href={`https://github.com/${commit.orgName}/${commit.repoName}/${commit.id}`}
+                    className="inline-flex items-center underline text-ulsoor-700"
+                    href={`https://github.com/${commit.orgName}/${commit.repoName}/${commit.sha}`}
                   >
                     {trimMessage(commit.message)}
                   </a>
                 </td>
-                <td className="px-4 py-2 text-left text-ulsoor-700  font-semibold">
+                <td className="px-4 py-2 text-left text-ulsoor-700">
                   {getParsedDate(commit.createdAt)}
                 </td>
-                <td className="px-4 py-2 text-right text-ulsoor-700  font-semibold">
+
+                <td className="px-4 py-2 text-left text-ulsoor-700">
                   {`${commit.orgName}/${commit.repoName}`}
                 </td>
               </tr>
