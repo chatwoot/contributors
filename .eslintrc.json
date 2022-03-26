@@ -5,6 +5,7 @@
     "prettier/prettier": ["error"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",
-    "import/no-relative-packages": "off"
+    "import/no-relative-packages": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

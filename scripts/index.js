@@ -22,9 +22,7 @@ const saveCommitToDB = (commitObj, orgName, repoName) => {
     repoName,
   };
 
-  if (commit.committer && commit.committer.date) {
-    commitData.createdAt = commit.committer.date;
-  }
+  commitData.createdAt = commit.committer.date;
   db.data.commits.push(commitData);
 
   if (author) {
@@ -38,16 +36,25 @@ const saveCommitToDB = (commitObj, orgName, repoName) => {
         avatarUrl: author.avatar_url,
         commitsCount: 1,
         firstCommitAt: commitData.createdAt,
+        lastCommitAt: commitData.createdAt,
       });
     } else {
       if (
-        commitData.createdAt &&
         compareAsc(
           parseISO(dbAuthor.firstCommitAt),
           parseISO(commitData.createdAt)
-        )
+        ) < 0
       ) {
         dbAuthor.firstCommitAt = commitData.createdAt;
+      }
+
+      if (
+        compareAsc(
+          parseISO(commitData.createdAt),
+          parseISO(dbAuthor.lastCommitAt)
+        ) < 0
+      ) {
+        dbAuthor.lastCommitAt = commitData.createdAt;
       }
 
       dbAuthor.commitsCount += 1;
@@ -56,6 +63,7 @@ const saveCommitToDB = (commitObj, orgName, repoName) => {
 };
 
 const fetchCommits = async (page, orgName, repoName) => {
+  console.log(`[FETCH]: ${orgName}/${repoName} - page ${page}`);
   try {
     const { data: commits } = await githubClient.getCommits(
       page,
@@ -88,7 +96,10 @@ REPO_NAMES.forEach(repo => {
 
 Promise.all(fetchCommitPromises)
   .then(() => {
-    console.log('Fetching data complete...');
+    console.log(`[FETCH]: Repo Count - ${REPO_NAMES.length}`);
+    console.log(`[FETCH]: Commits Count - ${db.data.commits.length}`);
+    console.log(`[FETCH]: Authors Count - ${db.data.authors.length}`);
+    console.log('[FETCH]: Fetching data complete');
   })
   .catch(e => {
     console.log(e);

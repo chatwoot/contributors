@@ -7,6 +7,11 @@
   --body-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
+button, a, th {
+  font-family: var(--heading-font-family);
+  letter-spacing: 0.1px;
+}
+
 html,
 body {
   padding: 0;
