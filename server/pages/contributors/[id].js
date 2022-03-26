@@ -4,6 +4,7 @@ import parseISO from 'date-fns/parseISO';
 import { compareAsc } from 'date-fns';
 import db from '../../lib/db';
 import AuthorCommits from '../../components/AuthorCommits';
+import SectionHeader from '../../components/SectionHeader';
 
 export async function getStaticProps(context) {
   const { id } = context.params;
@@ -39,12 +40,10 @@ export default function ContributorCommits({ authorCommits, author }) {
       <Head>
         <title>Chatwoot Contributors - {author.login}</title>
       </Head>
-      <section className="flex items-center justify-center px-24 py-4">
-        <h3 className="text-3xl font-medium text-chennai-800">
-          Showing all contributions of <strong>{author.login} </strong>
-        </h3>
-      </section>
-      <section className="flex items-center justify-center px-24 py-8">
+      <SectionHeader
+        title={`Showing all contributions from <strong>${author.login}</strong>`}
+      />
+      <section className="items-center justify-center px-24 hidden md:flex">
         <table className="table-auto  min-w-3xl bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
           <thead>
             <tr>
@@ -68,10 +67,21 @@ export default function ContributorCommits({ authorCommits, author }) {
                 {...commit}
                 position={index + 1}
                 key={commit.sha}
+                isMobile={false}
               />
             ))}
           </tbody>
         </table>
+      </section>
+      <section className="block md:hidden bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
+        {authorCommits.map((commit, index) => (
+          <AuthorCommits
+            {...commit}
+            position={index + 1}
+            key={commit.sha}
+            isMobile
+          />
+        ))}
       </section>
     </div>
   );

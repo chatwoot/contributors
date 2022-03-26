@@ -8,6 +8,10 @@ module.exports = {
       dropShadow: {
         flat: '4px 4px 0 #dc6633',
       },
+      flex: {
+        2: '2 2 0%',
+        3: '3 3 0%',
+      },
     },
 
     colors: {

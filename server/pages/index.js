@@ -4,6 +4,7 @@ import parseISO from 'date-fns/parseISO';
 import compareAsc from 'date-fns/compareAsc';
 import db from '../lib/db';
 import ContributorRow from '../components/ContributorRow';
+import SectionHeader from '../components/SectionHeader';
 
 export async function getStaticProps() {
   const authors = db.data ? db.data.authors : [];
@@ -32,13 +33,11 @@ export default function ContributorsList({ contributors }) {
       <Head>
         <title>Chatwoot Contributors</title>
       </Head>
-      <section className="flex  items-center justify-center px-24 py-4">
-        <h3 className="text-3xl font-medium text-chennai-800">
-          Showing all <strong>{contributors.length} contributors </strong>
-        </h3>
-      </section>
+      <SectionHeader
+        title={`Showing all <strong>${contributors.length}</strong> contributors`}
+      />
 
-      <section className="flex  items-center justify-center px-24 py-8">
+      <section className="items-center justify-center px-24 hidden md:flex">
         <table className="table-auto min-w-3xl bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
           <thead className="font-semibold">
             <tr>
@@ -58,10 +57,21 @@ export default function ContributorsList({ contributors }) {
                 {...contributor}
                 position={index + 1}
                 key={contributor.id}
+                isMobile={false}
               />
             ))}
           </tbody>
         </table>
+      </section>
+      <section className="block md:hidden bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
+        {contributors.map((contributor, index) => (
+          <ContributorRow
+            {...contributor}
+            position={index + 1}
+            key={contributor.id}
+            isMobile
+          />
+        ))}
       </section>
     </div>
   );
