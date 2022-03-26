@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "commit:fetch": "node index.js"
+    "fetch:commit": "node index.js"
   },
   "dependencies": {
     "@octokit/core": "^3.6.0",
