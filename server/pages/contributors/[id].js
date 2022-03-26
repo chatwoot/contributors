@@ -5,10 +5,8 @@ import { compareAsc } from 'date-fns';
 import db from '../../lib/db';
 import AuthorCommits from '../../components/AuthorCommits';
 
-export async function getServerSideProps(context) {
-  await db.read();
+export async function getStaticProps(context) {
   const { id } = context.params;
-
   const authors = db.data ? db.data.authors : [];
   const commits = db.data ? db.data.commits : [];
   const author = authors.find(a => a.login === id) || {};
@@ -22,6 +20,17 @@ export async function getServerSideProps(context) {
       author,
       authorCommits,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const authors = db.data ? db.data.authors : [];
+
+  return {
+    paths: authors.map(author => ({
+      params: { id: author.login },
+    })),
+    fallback: false,
   };
 }
 export default function ContributorCommits({ authorCommits, author }) {

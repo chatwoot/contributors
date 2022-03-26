@@ -14,8 +14,8 @@ class MyDocument extends Document {
         </Head>
         <body className="bg-background">
           <section className="flex flex-col items-center justify-center p-8 pt-16 text-center">
-            <h1 className="text-4xl text-chennai-900 font-bold mb-4">
-              We thank all our contributors.
+            <h1 className="text-4xl text-chennai-900 font-bold mb-8">
+              We thank all our contributors
             </h1>
             <p className="text-lg mb-8 text-chennai-800 max-w-lg ml-auto mr-auto">
               Chatwoot would not have been what it is today without the help of
