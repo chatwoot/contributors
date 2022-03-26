@@ -3,7 +3,7 @@ import { join } from 'path';
 import { Low, JSONFile } from 'lowdb';
 
 // Use JSON file for storage
-const file = join(process.env.PWD, '../server/db.json');
+const file = join(process.env.PWD, '../server/data/db.json');
 const adapter = new JSONFile(file);
 const db = new Low(adapter);
 

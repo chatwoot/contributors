@@ -41,8 +41,8 @@ const saveCommitToDB = (commitObj, orgName, repoName) => {
     } else {
       if (
         compareAsc(
-          parseISO(dbAuthor.firstCommitAt),
-          parseISO(commitData.createdAt)
+          parseISO(commitData.createdAt),
+          parseISO(dbAuthor.firstCommitAt)
         ) < 0
       ) {
         dbAuthor.firstCommitAt = commitData.createdAt;
@@ -50,8 +50,8 @@ const saveCommitToDB = (commitObj, orgName, repoName) => {
 
       if (
         compareAsc(
-          parseISO(commitData.createdAt),
-          parseISO(dbAuthor.lastCommitAt)
+          parseISO(dbAuthor.lastCommitAt),
+          parseISO(commitData.createdAt)
         ) < 0
       ) {
         dbAuthor.lastCommitAt = commitData.createdAt;
