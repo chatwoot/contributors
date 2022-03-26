@@ -6,9 +6,7 @@ import db from '../../lib/db';
 import AuthorCommits from '../../components/AuthorCommits';
 
 export async function getServerSideProps(context) {
-  await db.read();
   const { id } = context.params;
-
   const authors = db.data ? db.data.authors : [];
   const commits = db.data ? db.data.commits : [];
   const author = authors.find(a => a.login === id) || {};

@@ -6,7 +6,6 @@ import db from '../lib/db';
 import ContributorRow from '../components/ContributorRow';
 
 export async function getServerSideProps() {
-  await db.read();
   const authors = db.data ? db.data.authors : [];
   const authorsWithoutBots = authors.filter(
     author => !author.login.includes('bot')
