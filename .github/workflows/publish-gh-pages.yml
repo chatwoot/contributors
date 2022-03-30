@@ -1,7 +1,6 @@
 # #
-# # This action will fetch the commits across the org
-# # and commit the changes to the repository.
-# # This is set to run every 6 hours.
+# # This action will build and publish gh-pages site.
+# # This is set to run for every merge to master.
 # #
 
 name: Publish Github Pages
@@ -13,6 +12,8 @@ on:
 jobs:
   action:
     runs-on: ubuntu-latest
+    env:
+      custom_domain: ${{ secrets.CUSTOM_DOMAIN }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,9 +24,15 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Build pages
+        if: ${{ env.custom_domain == 'true' }}
         run: |
           yarn build
           yarn export
+      - name: Build pages
+        if: ${{ env.custom_domain == 'false' }}
+        run: |
+          BASE_PATH=/contributors yarn build
+          BASE_PATH=/contributors yarn export
       - name: Deploy github pages🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
