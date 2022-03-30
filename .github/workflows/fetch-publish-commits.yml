@@ -1,0 +1,30 @@
+# #
+# # This action will fetch the commits across the org
+# # and commit the changes to the repository.
+# # This is set to run every 6 hours.
+# #
+
+name: Fetch and publish commits
+on:
+  schedule:
+    - cron: "* */6 * * *"
+  workflow_dispatch:
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+    - uses: actions/setup-node@v2
+      with:
+          node-version: '16'
+    - name: Install dependencies and fetch commits
+      run: |
+          yarn
+          cd scripts
+          yarn fetch:commit
+    - name: Push the changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with: 
+        commit_message: Fetch and update contributions
