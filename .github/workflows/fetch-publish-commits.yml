@@ -8,6 +8,7 @@ name: Fetch and publish commits
 on:
   schedule:
     - cron: "* */6 * * *"
+  workflow_dispatch:
 jobs:
   action:
     runs-on: ubuntu-latest
