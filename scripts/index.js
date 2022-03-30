@@ -7,7 +7,7 @@ import GithubClient from './lib/github/client.js';
 import db from './lib/db/index.js';
 
 const { GITHUB_ACCESS_TOKEN } = process.env;
-const { GITHUB_ORG } = process.env;
+const { ORG } = process.env;
 const REPO_NAMES = (process.env.REPO_NAMES || []).split(',');
 const githubClient = new GithubClient(GITHUB_ACCESS_TOKEN);
 
@@ -91,7 +91,7 @@ db.data = { commits: [], authors: [] };
 
 const fetchCommitPromises = [];
 REPO_NAMES.forEach(repo => {
-  fetchCommitPromises.push(fetchCommits(1, GITHUB_ORG, repo));
+  fetchCommitPromises.push(fetchCommits(1, ORG, repo));
 });
 
 Promise.all(fetchCommitPromises)
