@@ -1,0 +1,18 @@
+on:
+  schedule:
+    - cron: "0 */4 * * *" # every 4 hours
+name: Pull Data and Build Contributors Page
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build
+        run: npm install
+      - name: Pull Contributors
+        run: node scripts/index.js
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: "master"
