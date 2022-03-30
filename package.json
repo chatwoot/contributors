@@ -18,5 +18,11 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.6.1"
+  },
+  "scripts": {
+    "dev": "yarn --cwd server/ dev",
+    "build": "yarn --cwd server/ build",
+    "start": "yarn --cwd server/ start",
+    "export": "yarn --cwd server/ export"
   }
 }
