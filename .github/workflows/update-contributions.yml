@@ -4,7 +4,7 @@
 # # This is set to run every 6 hours.
 # #
 
-name: Pull Data and Build Contributors Page
+name: Fetch contributions
 on:
   schedule:
     - cron: "0 */6 * * *" # every 6 hours
@@ -34,4 +34,4 @@ jobs:
     - name: Push the changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with: 
-        commit_message: Fetch and update contributions
+        commit_message: fetch and update contributions

@@ -1,0 +1,34 @@
+# #
+# # This action will fetch the commits across the org
+# # and commit the changes to the repository.
+# # This is set to run every 6 hours.
+# #
+
+name: Publish Github Pages
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+    - uses: actions/setup-node@v2
+      with:
+          node-version: '16'
+    - name: Install dependencies
+      run: yarn
+    - name: Build pages
+      run: |
+        cd server
+        yarn build
+        yarn export
+    - name: Deploy github pages🚀
+      uses: JamesIves/github-pages-deploy-action@v4.2.5
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: server/out # The folder the action should deploy.
