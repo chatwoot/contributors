@@ -35,3 +35,4 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with: 
         commit_message: fetch and update contributions
+        commit_author: GH Actions <actions@github.com>
