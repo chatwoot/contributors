@@ -14,7 +14,7 @@ function ContributorRow({
   return (
     <>
       {!isMobile && (
-        <tr key={id} className="border-b border-solid border-chennai-200">
+        <tr key={id} className="border-b border-solid border-brand-100">
           <td className="px-4 py-4 ">{`#${position}`}</td>
           <td className="px-4 py-4 text-left">
             <Link href={`/contributors/${login}`}>
@@ -28,17 +28,17 @@ function ContributorRow({
                     className="rounded-full"
                   />
                 </div>
-                <span className="pl-2 underline text-chennai-700">{login}</span>
+                <span className="pl-2 underline text-brand-600">{login}</span>
               </a>
             </Link>
           </td>
-          <td className="flex-3 px-4 py-4 text-left text-chennai-700">
+          <td className="flex-3 px-4 py-4 text-left text-brand-600">
             {getParsedDate(firstCommitAt)}
           </td>
-          <td className="flex-2 px-4 py-4 text-right text-chennai-700">
+          <td className="flex-2 px-4 py-4 text-right text-brand-600">
             <Link href={`/contributors/${login}`}>
               <a
-                className="pl-2 hover:underline text-chennai-700"
+                className="pl-2 hover:underline text-brand-600"
                 href={`/contributors/${login}`}
               >
                 {commitsCount}
@@ -47,7 +47,7 @@ function ContributorRow({
           </td>
         </tr>
       )}
-      <div className="block md:hidden p-4 border-b border-solid border-chennai-200">
+      <div className="block lg:hidden p-4 border-b border-solid border-brand-100">
         <div className="flex flex-row items-center">
           <div className="mr-2 w-6">{`#${position}`}</div>
           <Link href={`/contributors/${login}`}>
@@ -62,16 +62,16 @@ function ContributorRow({
                 />
               </div>
               <div className="flex flex-col">
-                <span className="underline text-chennai-700">{login}</span>
+                <span className="underline text-brand-600">{login}</span>
                 <div className="flex flex-row">
                   <Link href={`/contributors/${login}`}>
                     <a
-                      className="mt-1 text-chennai-700"
+                      className="mt-1 text-brand-600"
                       href={`/contributors/${login}`}
                     >
                       <span className="font-semibold">{commitsCount}</span>
                       {` commits since`}&nbsp;
-                      <span className="text-left font-semibold text-chennai-700 mr-4">
+                      <span className="text-left font-semibold text-brand-600 mr-4">
                         {getParsedDate(firstCommitAt)}
                       </span>
                     </a>

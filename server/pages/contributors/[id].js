@@ -5,6 +5,7 @@ import { compareAsc } from 'date-fns';
 import db from '../../lib/db';
 import AuthorCommits from '../../components/AuthorCommits';
 import SectionHeader from '../../components/SectionHeader';
+import contributorsConfig from '../../../contributors.config';
 
 export async function getStaticProps(context) {
   const { id } = context.params;
@@ -38,27 +39,20 @@ export default function ContributorCommits({ authorCommits, author }) {
   return (
     <div className="container mx-auto">
       <Head>
-        <title>Chatwoot Contributors - {author.login}</title>
+        <title>
+          {contributorsConfig.siteMetadata.title} - {author.login}
+        </title>
       </Head>
       <SectionHeader
+        backButtonLink="/"
         title={`Showing all contributions from <strong>${author.login}</strong>`}
       />
-      <section className="items-center justify-center px-24 hidden md:flex">
-        <table className="table-auto  min-w-3xl bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
+      <section className="items-center justify-center px-12 hidden lg:flex">
+        <table className="table-auto min-w-3xl text-brand-600">
           <thead>
-            <tr>
-              <th className="p-4 pr-8 text-left text-lg font-semibold text-chennai-800">
-                #
-              </th>
-              <th className="p-4 pr-8 text-left text-lg font-semibold text-chennai-800">
-                Message
-              </th>
-              <th className="p-4 pr-12 text-left text-lg font-semibold text-chennai-800">
-                Date
-              </th>
-              <th className="p-4  text-left text-lg font-semibold text-chennai-800">
-                Repo
-              </th>
+            <tr className="text-left text-lg font-semibold text-brand-700">
+              <th className="p-4 pr-8">#</th>
+              <th className="p-4 pr-8">Commit Details</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +67,7 @@ export default function ContributorCommits({ authorCommits, author }) {
           </tbody>
         </table>
       </section>
-      <section className="block md:hidden bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
+      <section className="block lg:hidden text-brand-600 ">
         {authorCommits.map((commit, index) => (
           <AuthorCommits
             {...commit}

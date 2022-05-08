@@ -5,6 +5,7 @@ import compareAsc from 'date-fns/compareAsc';
 import db from '../lib/db';
 import ContributorRow from '../components/ContributorRow';
 import SectionHeader from '../components/SectionHeader';
+import ContributorConfig from '../../contributors.config';
 
 export async function getStaticProps() {
   const authors = db.data ? db.data.authors : [];
@@ -31,24 +32,19 @@ export default function ContributorsList({ contributors }) {
   return (
     <div className="container mx-auto">
       <Head>
-        <title>Chatwoot Contributors</title>
+        <title>{ContributorConfig.siteMetadata.title}</title>
       </Head>
       <SectionHeader
         title={`Showing all <strong>${contributors.length}</strong> contributors`}
       />
-
-      <section className="items-center justify-center px-24 hidden md:flex">
-        <table className="table-auto min-w-3xl bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
-          <thead className="font-semibold">
+      <section className="items-center justify-center px-12 pb-24 hidden lg:flex">
+        <table className="table-auto min-w-3xl text-brand-600">
+          <thead className="font-semibold text-brand-700">
             <tr>
-              <th className="p-4 text-left text-lg text-chennai-800">#</th>
-              <th className="p-4 text-left text-lg text-chennai-800">Name</th>
-              <th className="p-4 pr-12 text-left text-lg text-chennai-800">
-                Since
-              </th>
-              <th className="p-4  text-right text-lg text-chennai-800">
-                Commits
-              </th>
+              <th className="p-4 text-left text-lg">#</th>
+              <th className="p-4 text-left text-lg">Name</th>
+              <th className="p-4 pr-12 text-left text-lg">Since</th>
+              <th className="p-4  text-right text-lg">Commits</th>
             </tr>
           </thead>
           <tbody>
@@ -63,7 +59,7 @@ export default function ContributorsList({ contributors }) {
           </tbody>
         </table>
       </section>
-      <section className="block md:hidden bg-chennai-100  border-2 text-chennai-700 border-chennai-600 drop-shadow-flat">
+      <section className="block lg:hidden">
         {contributors.map((contributor, index) => (
           <ContributorRow
             {...contributor}

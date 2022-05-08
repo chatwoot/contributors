@@ -21,18 +21,12 @@ jobs:
           node-version: '16'
     - name: Install dependencies
       run: yarn
-    - name: create env file
-      run: |
-        cd scripts
-        touch .env
-        echo REPO_NAMES=${{ secrets.REPO_NAMES }} >> .env
-        echo ORG=${{ secrets.ORG }} >> .env
     - name: Fetch commits
       run: |
         cd scripts
         yarn fetch:commit
     - name: Push the changes
       uses: stefanzweifel/git-auto-commit-action@v4
-      with: 
+      with:
         commit_message: fetch and update contributions
         commit_author: GH Actions <actions@github.com>

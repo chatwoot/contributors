@@ -5,10 +5,9 @@ import compareAsc from 'date-fns/compareAsc/index.js';
 import parseISO from 'date-fns/parseISO/index.js';
 import GithubClient from './lib/github/client.js';
 import db from './lib/db/index.js';
+import ContributorsConfig from '../contributors.config.js';
 
 const { GITHUB_ACCESS_TOKEN } = process.env;
-const { ORG } = process.env;
-const REPO_NAMES = (process.env.REPO_NAMES || []).split(',');
 const githubClient = new GithubClient(GITHUB_ACCESS_TOKEN);
 
 const saveCommitToDB = (commitObj, orgName, repoName) => {
@@ -90,13 +89,17 @@ const fetchCommits = async (page, orgName, repoName) => {
 db.data = { commits: [], authors: [] };
 
 const fetchCommitPromises = [];
-REPO_NAMES.forEach(repo => {
-  fetchCommitPromises.push(fetchCommits(1, ORG, repo));
+ContributorsConfig.github.repoNames.forEach(repo => {
+  fetchCommitPromises.push(
+    fetchCommits(1, ContributorsConfig.github.org, repo)
+  );
 });
 
 Promise.all(fetchCommitPromises)
   .then(() => {
-    console.log(`[FETCH]: Repo Count - ${REPO_NAMES.length}`);
+    console.log(
+      `[FETCH]: Repo Count - ${ContributorsConfig.github.repoNames.length}`
+    );
     console.log(`[FETCH]: Commits Count - ${db.data.commits.length}`);
     console.log(`[FETCH]: Authors Count - ${db.data.authors.length}`);
     console.log('[FETCH]: Fetching data complete');

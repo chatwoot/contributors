@@ -13,10 +13,9 @@ module.exports = {
         3: '3 3 0%',
       },
     },
-
     colors: {
       background: '#fcd8d4',
-      chennai: {
+      brand: {
         50: '#fdf5ef',
         100: '#fbe6d9',
         200: '#f5c6aa',
