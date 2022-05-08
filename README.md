@@ -19,7 +19,7 @@ Publishing the page is automated using Github Actions.
 ## 👩‍💻 How to set up your own contributors page?
 
 1. Create a repository from this template.
-2. Update the contributors.config.js file in the repository as follows.
+2. Update the `contributors.config.js` file in the repository as follows.
 
 | Key                | Description                                                                                                                                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
