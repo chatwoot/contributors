@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
-const basePath = process.env.BASE_PATH || '';
+
+const contributorsConfig = require('../contributors.config');
+
+const basePath = contributorsConfig.basePath || '';
 
 const nextConfig = {
   basePath,

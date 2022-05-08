@@ -5,7 +5,8 @@ import { compareAsc } from 'date-fns';
 import db from '../../lib/db';
 import AuthorCommits from '../../components/AuthorCommits';
 import SectionHeader from '../../components/SectionHeader';
-import contributorsConfig from '../../../contributors.config';
+
+const contributorsConfig = require('../../../contributors.config');
 
 export async function getStaticProps(context) {
   const { id } = context.params;

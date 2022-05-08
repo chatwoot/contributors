@@ -5,7 +5,8 @@ import compareAsc from 'date-fns/compareAsc/index.js';
 import parseISO from 'date-fns/parseISO/index.js';
 import GithubClient from './lib/github/client.js';
 import db from './lib/db/index.js';
-import ContributorsConfig from '../contributors.config.js';
+
+const contributorsConfig = require('../contributors.config');
 
 const { GITHUB_ACCESS_TOKEN } = process.env;
 const githubClient = new GithubClient(GITHUB_ACCESS_TOKEN);
@@ -89,16 +90,16 @@ const fetchCommits = async (page, orgName, repoName) => {
 db.data = { commits: [], authors: [] };
 
 const fetchCommitPromises = [];
-ContributorsConfig.github.repoNames.forEach(repo => {
+contributorsConfig.github.repoNames.forEach(repo => {
   fetchCommitPromises.push(
-    fetchCommits(1, ContributorsConfig.github.org, repo)
+    fetchCommits(1, contributorsConfig.github.org, repo)
   );
 });
 
 Promise.all(fetchCommitPromises)
   .then(() => {
     console.log(
-      `[FETCH]: Repo Count - ${ContributorsConfig.github.repoNames.length}`
+      `[FETCH]: Repo Count - ${contributorsConfig.github.repoNames.length}`
     );
     console.log(`[FETCH]: Commits Count - ${db.data.commits.length}`);
     console.log(`[FETCH]: Authors Count - ${db.data.authors.length}`);

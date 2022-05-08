@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       dropShadow: {
-        flat: '4px 4px 0 #dc6633',
+        xxxl: '4px 4px 0 #dc6633',
       },
       flex: {
         2: '2 2 0%',

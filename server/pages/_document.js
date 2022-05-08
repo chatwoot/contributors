@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import ContributorsConfig from '../../contributors.config';
+
+const ContributorsConfig = require('../../contributors.config');
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -29,11 +30,11 @@ class MyDocument extends Document {
               <p className="text-lg mb-4 lg:mb-8 text-brand-800 max-w-lg ml-auto mr-auto">
                 {pageDescription}
               </p>
-              <div className="py-2 md:py-4 flex flex-col md:flex-row items-center">
+              <div className="py-2 md:py-4 flex flex-col xl:flex-row items-center">
                 {githubLink && (
                   <a
                     href={githubLink}
-                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-flat mr-0 md:mr-4"
+                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-xxxl mr-0 md:mr-4"
                   >
                     🐙 Star us on GitHub
                   </a>
@@ -42,7 +43,7 @@ class MyDocument extends Document {
                 {contributingGuide && (
                   <a
                     href={contributingGuide}
-                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-flat mr-0 md:mr-4"
+                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-xxxl mr-0 md:mr-4"
                   >
                     📚 How to contribute
                   </a>
@@ -50,7 +51,7 @@ class MyDocument extends Document {
                 {sponsorsLink && (
                   <a
                     href={sponsorsLink}
-                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-flat"
+                    className="px-4 mb-2 py-2 border-2 text-brand-600 font-semibold border-brand-600 bg-brand-100 md:drop-shadow-xxxl"
                   >
                     ❤️ Sponsor us
                   </a>
