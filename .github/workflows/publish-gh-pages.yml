@@ -1,7 +1,6 @@
 # #
-# # This action will fetch the commits across the org
-# # and commit the changes to the repository.
-# # This is set to run every 6 hours.
+# # This action will build and publish the gh-pages branch.
+# # This is set to run against merges to master.
 # #
 
 name: Publish Github Pages
