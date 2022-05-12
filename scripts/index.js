@@ -6,7 +6,7 @@ import parseISO from 'date-fns/parseISO/index.js';
 import GithubClient from './lib/github/client.js';
 import db from './lib/db/index.js';
 
-const contributorsConfig = require('../contributors.config');
+import contributorsConfig from '../contributors.config.js';
 
 const { GITHUB_ACCESS_TOKEN } = process.env;
 const githubClient = new GithubClient(GITHUB_ACCESS_TOKEN);
