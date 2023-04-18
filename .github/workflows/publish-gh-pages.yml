@@ -5,9 +5,8 @@
 
 name: Publish Github Pages
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: "0 */1 * * *" # every hour
   workflow_dispatch:
 jobs:
   action:
